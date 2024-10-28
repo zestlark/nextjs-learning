@@ -4,15 +4,27 @@ export const metadata = {
   description: 'hello'
 }
 
-import { redirect } from "next/navigation"
+// import { redirect } from "next/navigation"
 
+async function create(formData: FormData) {
+  'use server';
+
+  console.log(formData.get('username'));
+  console.log(formData.get('password'));
+
+  
+}
 
 function Login() {
-  redirect('signup')
+  // redirect('signup')
 
-  throw new Error('Test error')
+  // throw new Error('Test error')
   return (
-    <div>Login</div>
+    <form action={create}>
+      <input type="text" name="username" id="" />
+      <input type="password" name="password"/>
+      <button type="submit">submit</button>
+    </form>
   )
 }
 

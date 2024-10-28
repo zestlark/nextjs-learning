@@ -1,5 +1,6 @@
 import Safe from "@/app/_safe/page"
 import { Metadata } from "next"
+import { Suspense } from "react"
 
 type Params = {
   params: { slugs?: string[] }
@@ -12,7 +13,9 @@ export const generateMetadata = ({ params }: Params): Metadata => {
 }
 
 export default async function page({ params }: Params) {
-  const data = await fetch(`https://jsonplaceholder.typicode.com/todos/${params.slugs ? params.slugs[0] : ''}`)
+  const data = await fetch(`https://jsonplaceholder.typicode.com/todos/${params.slugs ? params.slugs[0] : ''}`,{
+    cache:'no-store'
+  })
   const jsonData = await data.json()
 
   return (
